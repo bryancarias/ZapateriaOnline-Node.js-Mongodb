@@ -1,0 +1,37 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    .row
+      .col-md-6
+        .card
+          if (providerMessage.length)
+            p.alert.alert-danger #{providerMessage}
+          .card-header
+            h3 Provider
+          .card-body
+            form.form(action="/admin/provider", method="post")
+              .form-group
+                input.form-control(type="text", name="name", placeholder="Provider Name")
+              .form-group
+                input.form-control(type="text", name="seller", placeholder="Seller Name")
+              .form-group
+                input.form-control(type="number", name="telephone", placeholder="Telephone")
+              .form-group
+                input.form-control(type="number", name="minimum", placeholder="minimum")
+              .form-group
+                button.btn.btn-primary.btn-block(type="submit") Save
+      if (provider.length)
+        each providers in provider
+          .col-md-3
+            .card
+              .card-body
+                h2 #{providers.name}
+                p #{providers.seller}
+                p #{providers.telephone}
+                p #{providers.minimum}
+              .card-footer
+                form(action="/admin/provider/"+providers._id, method="post")
+                  button.btn.btn-outline-warning.btn-block(type="submit") Delete
+      else
+        p.alert.alert-danger Add a Provider

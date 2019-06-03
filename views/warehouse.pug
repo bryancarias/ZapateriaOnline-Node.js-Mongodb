@@ -1,0 +1,25 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    .jumbotron
+      h3 Buy new Products
+      a.btn.btn-success.m-2(href="/admin/tobuy") new Product
+      hr
+      h3 Buy existing Products 
+      .row
+        if (tobuy.length)
+          each to in tobuy
+            .col-md-3
+              .card
+                .card-header
+                  img(src="/imagen/"+to.avatar, alt=""+to.name)
+                .card-body
+                  h4 Name: #{to.name}
+                  p.h6 Stock: #{to.stock}
+                .card-footer
+                  a.btn.btn-success.btn-block(href="/admin/warehouse/"+to._id) Buy
+                  form.mt-2(action="/admin/warehouse-delete/"+to._id, method="post")
+                    button.btn.btn-outline-warning.btn-block(type="submit") Delete
+        else
+          p.alert.alert-success Buy new Product

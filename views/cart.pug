@@ -1,0 +1,18 @@
+extends layout
+block content
+  include partials/header
+  .container.header
+    form(action="/cart", method="post")
+      button.btn.btn-outline-primary(type="submit") Confirt
+    .row
+      each car in carts
+        .col-md-3.mt-2
+          .card
+            .card-header
+              img(src="/imagen/"+car.avatar, alt="")
+              h3 #{car.name}
+            .card-body
+              p Price: #{car.price}
+            .card-footers
+              form(action="/car-delete/"+car._id, method="post")
+                button.btn.btn-outline-primary(type="submit") Delete

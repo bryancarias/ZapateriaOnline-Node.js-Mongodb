@@ -1,0 +1,18 @@
+extends layout	
+block content
+	include partials/haderAdmin
+	.container.header
+		table.table.table-striped
+			thead
+				tr
+					th(scope="col") Name
+					th(scope="col") Price
+					th(scope="col") Quantity
+					th(scope="col") User Name
+					th(scope="col") email
+		each products in tobuy
+			p #{products.name}
+			each sales in products.sale
+				p #{sales.price}
+				p #{sales.quantity}
+				p #{sales.user}

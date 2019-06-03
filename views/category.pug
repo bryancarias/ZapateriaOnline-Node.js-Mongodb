@@ -1,0 +1,29 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header 
+    .row
+      .col-md-6
+        .card
+          if (categoryMessage.length)
+            p.alert.alert-danger #{categoryMessage}
+          .card-header
+            h3 Category
+          .card-body
+            form(action="/admin/category", method="post")
+              .form-group
+                input.form-control(type="text", name="name", placeholder="Provider Name")
+              .form-group
+                button.btn.btn-success(type="submit") Save
+      if (category.length)
+        each categories in category
+          .col-md-3.mt-2
+            .card
+              .card-header
+                h2 #{categories.name}
+              .card-body
+                form(action="/admin/category-delete/"+categories._id, method="post")
+                  button.btn.btn-outline-warning.btn-block(type="submit") Delete
+
+      else
+        p.alert.alert-danger Add a categories

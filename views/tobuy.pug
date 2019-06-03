@@ -1,0 +1,48 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    .row
+      .col-md-4
+        .card
+          if (tobuyMessage.length)
+            p.alert.alert-danger #{tobuyMessage}
+          .card-header
+            h2 Buy new Product
+          .card-body
+            form.cart(action="/admin/tobuy", method="post",enctype="multipart/form-data")
+              .form-group
+                input.form-control(type="file" name="img")
+                input.form-control(type="text", name="name", placeholder="Shoes name")
+              .form-group
+                input.form-control(type="text", name="colour", placeholder="shoes colour")
+                input.form-control(type="number", name="price", placeholder="shoes sale price")
+              .form-group
+                input.form-control(type="number", name="size", placeholder="Shoes size")
+                select.form-control(name="category")
+                  option(value="") select a category
+                  each categories in category
+                    option(value=""+categories._id) #{categories.name}
+              .form-group
+                input.form-control(type="number", name="priceBuy", placeholder="Purchase price")
+                input.form-control(type="number", name="quantity", placeholder="Amount to Buy")
+              .form-group
+                select.form-control(name="provider")
+                  option(value="") Select a provider
+                  each providers in provider
+                    option(value=""+providers._id) #{providers.name}
+              .form-group
+                button.btn.btn-primary.btn-block(type="submit") Save
+      if (tobuy.length)
+        each tobuys in tobuy
+          .col-md-2
+            .card
+              .card-header
+                img(src="/imagen/"+tobuys.avatar, alt="")
+                h2 #{tobuys.name}
+              .card-body
+                p  Color: #{tobuys.colour}
+                p Size: #{tobuys.size}
+                p Stock #{tobuys.stock}
+      else
+        p.alert.alert-danger No hay Proveedores

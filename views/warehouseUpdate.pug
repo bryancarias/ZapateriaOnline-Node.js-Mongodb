@@ -1,0 +1,25 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    .col-md-6.mx-auto
+      .card
+        .card-header
+          img.mx-auto(src="/imagen/"+tobuy.avatar, alt="")
+          h3 #{tobuy.name}
+        .card-body
+          form(action="/admin/warehouse/"+tobuy._id, method="post")
+            .form-group
+              input.form-control(type="number", name="price" placeholder="Price")
+            .form-group
+              input.form-control(type="number", name="quantity" placeholder="Quantity")
+            .form-group
+              select.form-control(name="provider")
+                option(value="") select a Provider
+                each providers in provider
+                  option(value=""+providers._id) #{providers.name}
+            .form-group
+              button.btn.btn-primary.btn-block(type="submit") Buy
+        .card-footer
+          if (tobuyMessage.length) 
+            p.alert.alert-danger #{tobuyMessage}

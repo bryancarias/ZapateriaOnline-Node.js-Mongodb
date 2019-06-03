@@ -1,0 +1,24 @@
+extends layout
+block content
+  include partials/header
+  .container.header
+    .row
+      if (product.length)
+        each products in product
+          .col-md-3 
+            .card
+              .card-body
+                img(src="/imagen/"+products.avatar, alt=""+products.name)
+                h3.mx-auto #{products.name}
+                p  Price: $#{products.price} - Color: #{products.colour}
+              .card-footer
+                form(action="/shoppingcart", method="post")
+                  .form-group
+                    input(type="hidden", name="product" value=""+products._id)
+                    input(type="hidden", name="user" value=""+user._id)
+                    input(type="hidden", name="price" value=""+products.price)
+                    input(type="hidden", name="avatar" value=""+products.avatar)
+                    input(type="hidden", name="name" value=""+products.name)
+                    button.btn.btn-primary.btn-block(type="submit") Add shopping Card
+      else
+        .alert.alert-success No Product

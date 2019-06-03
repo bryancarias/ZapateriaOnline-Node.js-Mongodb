@@ -1,0 +1,24 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    if (userMessage.length)
+      p.alert.alert-danger #{userMessage}
+    .row
+      each users in User
+        .col-md-3
+          .card
+            .card-header
+              h3 #{users.firstname} #{users.lastname}
+              p Nit: #{users.nit}
+            .card-body
+              p  #{users.email}
+            .card-footer
+              if (users.isAdmin)
+                p Admin
+              else
+                p User
+              form(action="/admin/user/"+users._id, method="post")
+                button.btn.btn-outline-secondary.btn-block(type="submit") Update
+              form.mt-2(action="/admin/userdelete/"+users._id, method="post")
+                button.btn.btn-outline-warning.btn-block(type="submit") Delete

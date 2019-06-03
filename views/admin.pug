@@ -1,0 +1,11 @@
+extends layout
+block content
+  include partials/headerAdmin
+  .container.header
+    .jumbotron
+      h2.display-3 Admin Shoes Shop #{user.firstname} #{user.lastname}
+      hr
+      a.btn.btn-outline-secondary.m-2(href="/admin/warehouse") Products #{product}
+      a.btn.btn-outline-secondary.m-2(href="/admin/user") Users #{User}
+      a.btn.btn-outline-secondary.m-2(href="/admin/provider") Providers #{provider}
+      a.btn.btn-outline-secondary.m-2(href="/admin/category") Categories #{Category}

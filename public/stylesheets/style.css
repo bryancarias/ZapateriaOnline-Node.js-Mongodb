@@ -1,0 +1,24 @@
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.hola {
+    background: #f1f1f1;
+    padding: 50px 0 30px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+.hola2 {
+    text-align: center;
+}
+.hola3 {
+    background: #f1f1f1;
+    padding: 10px 0 30px 0;
+    margin-top: 30px;
+}
+.header{
+    margin-top: 95px;
+}
+
